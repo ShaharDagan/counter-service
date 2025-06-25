@@ -25,8 +25,8 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f k8s/namespace.yaml
-        kubectl apply -f k8s/pv.yaml
-        kubectl apply -f k8s/pvc.yaml
-        kubectl apply -f k8s/deployment.yaml
-        kubectl apply -f k8s/service.yaml
+        kubectl apply -f counter-service/k8s/namespace.yaml
+        kubectl apply -f counter-service/k8s/pv.yaml
+        kubectl apply -f counter-service/k8s/pvc.yaml
+        kubectl apply -f counter-service/k8s/deployment.yaml
+        kubectl apply -f counter-service/k8s/service.yaml
