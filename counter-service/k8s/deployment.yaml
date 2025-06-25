@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter-service
+  namespace: prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: counter-service
+  template:
+    metadata:
+      labels:
+        app: counter-service
+    spec:
+      containers:
+      - name: counter-service
+        image: shahardagan14/counter-service:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: counter-storage
+          mountPath: /app/counter.json
+          subPath: counter.json
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+      volumes:
+      - name: counter-storage
+        persistentVolumeClaim:
+          claimName: counter-pvc
