@@ -2,8 +2,8 @@ name: Build & Push Docker Image
 
 on:
   push:
-    branches: [ dev, main ]
-
+    branches: [ main ]
+  workflow_dispatch:
 jobs:
   build-and-push:
     runs-on: self-hosted
