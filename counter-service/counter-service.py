@@ -1,8 +1,31 @@
 #!flask/bin/python
-from flask import Flask, request, request_started
+from flask import Flask, request
+import os
+import json
 
 app = Flask(__name__)
-counter = 0
+COUNTER_FILE = "counter.json"
+
+
+# Load counter from file
+def load_counter():
+    if os.path.exists(COUNTER_FILE):
+        try:
+            with open(COUNTER_FILE, "r") as f:
+                data = json.load(f)
+                return data.get("counter", 0)
+        except Exception:
+            return 0
+    return 0
+
+
+# Save counter to file
+def save_counter(value):
+    with open(COUNTER_FILE, "w") as f:
+        json.dump({"counter": value}, f)
+
+
+counter = load_counter()
 
 
 @app.route('/', methods=["POST", "GET"])
@@ -10,9 +33,10 @@ def index():
     global counter
     if request.method == "POST":
         counter += 1
-        return "Hmm, Plus 1 please "
+        save_counter(counter)
+        return "Hmm, Plus 1 please\n"
     else:
-        return str(f"Our counter is: {counter} ")
+        return f"Our counter is: {counter}\n"
 
 
 if __name__ == '__main__':
