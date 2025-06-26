@@ -20,7 +20,7 @@ spec:
         - containerPort: 80
         volumeMounts:
         - name: counter-storage
-          mountPath: /usr/src/app
+          mountPath: /mnt/data
       volumes:
       - name: counter-storage
         persistentVolumeClaim:

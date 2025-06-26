@@ -4,7 +4,7 @@ import os
 import json
 
 app = Flask(__name__)
-COUNTER_FILE = "counter.json"
+COUNTER_FILE = "/mnt/data/counter.json"
 
 
 # Load counter from file
