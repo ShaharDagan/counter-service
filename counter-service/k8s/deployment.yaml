@@ -20,8 +20,7 @@ spec:
         - containerPort: 80
         volumeMounts:
         - name: counter-storage
-          mountPath: /app/counter.json
-          subPath: counter.json
+          mountPath: /mnt/data
         resources:
           limits:
             cpu: "500m"
